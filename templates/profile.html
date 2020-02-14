@@ -1,0 +1,149 @@
+{% extends "user_base.html"%}
+
+{% block content %}
+<body style="background-color:#f7f2e9">
+<div class="ui modal">
+  <i class="close icon">
+  </i>
+  <div class="header">
+    Edit Profile
+  </div>
+  <div class="image content">
+    <div class="ui medium image">
+      <img src="{{customer.getimage}}">
+    </div>
+    <div class="description">
+      <form class="ui form">
+        <h4 class="ui dividing header">Edit Profile</h4>
+        <div class="field">
+          <label>Name</label>
+          <div class="two fields">
+            <div class="field">
+              <input type="text" name="first-name" placeholder="First Name">
+            </div>
+            <div class="field">
+              <input type="text" name="last-name" placeholder="Last Name">
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label>Phone Number</label>
+            <div class="field">
+              <input type="text" name="phone-number" placeholder="Phone Number">
+            </div>
+        </div>
+        <div class="field">
+          <label>Email Address</label>
+            <div class="field">
+              <input type="text" name="email" placeholder="Email Address">
+            </div>
+        </div>
+        <div class="field">
+          <label>Password</label>
+            <div class="field">
+              <input type="Password" name="password" placeholder="Password">
+            </div>
+        </div>
+      </form>
+  </div>
+</div>
+<div class="actions">
+  <div class="ui black deny button">
+    Nope
+  </div>
+  <div class="ui positive right labeled icon button">
+    Yep, that's me
+    <i class="checkmark icon"></i>
+  </div>
+</div>
+</div>
+<div class="ui sticky right aligned grid" id="profilebar">
+  <div class="left floated left aligned six wide column">
+    <div class="ui link items">
+    <div class="item">
+      <div class="ui tiny image">
+        <img src="{{ customer.getimage }}">
+      </div>
+      <div class="content">
+        <div class="header">{{ customer.name }}</div>
+        <div class="description">
+          <p>{{ customer.email }}</p>
+          <p>{{customer.phone}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="right floated right aligned six wide column">
+    <button class="ui inverted green button" id="editProfile">Edit Profile</button>
+  </div>
+</div>
+<div class="ui grid">
+  <div class="two wide column">
+    <div class="ui compact vertical labeled icon menu">
+      <a class="item">
+        <i class="shopping cart icon"></i>
+        Orders
+      </a>
+      <a class="item">
+      <i class="bookmark icon"></i>
+        Favourites
+      </a>
+      <a class="item">
+        <i class="money bill alternate outline icon"></i>
+        Payments
+      </a>
+      <a class="item active">
+        <i class="address card icon"></i>
+        Addresses
+      </a>
+    </div>
+  </div>
+  <div class="fourteen wide stretched column">
+    <div class="ui segment">
+      This is an stretched grid column. This segment will always match the tab height
+    </div>
+  </div>
+</div>
+</body>
+<style>
+  #profilebar
+  {
+    padding: 2% 10%;
+    background: lightblue;
+  }
+  .right.floated.right.aligned
+  {
+    padding-top:3% !important;
+  }
+  .ui.grid
+  {
+    padding-right:5% !important;
+    padding-left:5% !important;
+  }
+  .image.content .description
+  {
+    width:65% !important;
+  }
+  .actions
+  {
+    text-align: center !important;
+  }
+</style>
+<script>
+$(document).ready(function(){
+  $('.ui.sticky')
+    .sticky({
+      context: '#profilebar'
+    });
+    $("#profileOptions").on("click",function(){
+    $('.ui.dropdown').dropdown('show');
+    });
+  $("#editProfile").on("click",function(){
+    $('.ui.modal')
+    .modal('show');
+});
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+{% endblock %}

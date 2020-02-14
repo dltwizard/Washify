@@ -1,0 +1,54 @@
+{% extends "user_base.html" %}
+
+{% block content %}
+<h1 class="ui header">Order Summary:</h1>
+{% for order in object %}
+<table class="ui very basic celled table" style="padding: 4%">
+
+  <thead>
+    <tr><th>Product</th>
+    <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+  </tr></thead>
+  <tbody>
+  {% for order_item in order.items.all %}
+    <tr>
+      <td>
+        <h4 class="ui image header">
+          <img src="{{ order_item.item.image.url }}" class="ui medium rounded image">
+          <div class="content">
+            {{ order_item.item.name }}
+
+        </div>
+      </h4></td>
+      <td>{{ order_item.item.price }}</td>
+      <td>
+      <a href="{% url 'core:remove-single-from-cart' order_item.item.slug %}">
+                    <i class="fas fa-minus mr-2"></i>
+               </a>
+                {{ order_item.quantity }}
+            <a href="{% url 'core:add-single-to-cart' order_item.item.slug %}">
+                <i class="fas fa-plus ml-2"></i>
+            </a>
+      </td>
+    <td class="right aligned">₹{{ order_item.get_final_price}}</td>
+
+    </tr>
+{% endfor %}
+  </tbody>
+<tr>
+            <td colspan="2"><b>Order Total</b></td>
+            <td><b>₹{{ order.get_total }}</b></td>
+        </tr>
+        <tr>
+            <td colspan="10">
+            <a class='btn btn-warning float-right ml-2' href='/checkout/'>Proceed to checkout</a>
+            <a class='btn btn-primary float-right' href='/'>Continue shopping</a>
+            </td>
+        </tr>
+</table>
+    {% endfor %}
+{% endblock content %}
+
+

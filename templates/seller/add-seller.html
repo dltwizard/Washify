@@ -1,0 +1,64 @@
+{% extends 'buyer/user_base.html'%}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<body style="background-color:#f7f2e9">
+<div class="ui raised very padded text container inverted segment">
+<form method="POST" enctype="multipart/form-data" novalidate>
+ {% csrf_token %}
+<div class="ui form">
+	  <div class="two fields">
+    <div class="field">
+      {{ form.name |as_crispy_field }}
+    </div>
+    <div class="field">
+      {{ form.phone |as_crispy_field }}
+    </div>
+  </div>
+  <div class="field">
+    {{ form.address|as_crispy_field}}
+  </div>
+  <div class="field">
+   {{ form.logo|as_crispy_field }}
+  </div>
+  <div class="ui right aligned grid">
+  	<div class="right floated right aligned six wide column">
+  <div class="field">
+  <button class="ui primary button" type="Submit">
+  Okay
+</button>
+<button class="ui button" type="Reset">
+  Cancel
+</button>
+  </div>
+  </form>
+</div>
+</div>
+</div>
+</div>
+</body>
+<script>
+$(document).ready(function(){
+$("#profileOptions").on("click",function(){
+$('.ui.dropdown').dropdown('show');
+});
+$("#editProfile").on("click",function(){
+$('.ui.modal')
+.modal('show');
+});
+$('.ui.checkbox')
+  .checkbox();
+});
+</script>
+<style type="text/css">
+.very.padded.text.container.segment
+{
+	margin-top:3%;
+}
+label
+{
+	color:#fff !important;
+}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+{% endblock %}

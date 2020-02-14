@@ -1,0 +1,96 @@
+{% load static %}
+{% load cart_template_tags %}
+{% block extra_head %}
+<link href="{% static 'css/navbar_style.css' %}" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+{% endblock %}
+<nav class="navbar navbar-expand-lg navbar-light white scrolling-navbar">
+    <div class="container">
+
+      <!-- Brand -->
+      <a class="navbar-brand waves-effect" href="/">
+        <strong class="blue-text">Washify</strong>
+      </a>
+
+      <!-- Collapse -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Links -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Left -->
+        <ul class="navbar-nav mr-auto">
+
+
+        </ul>
+
+        <!-- Right -->
+        <ul class="navbar-nav nav-flex-icons">
+          {% if request.user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="/view-cart">
+              <span class="badge red z-depth-1 mr-1"> {{ request.user|cart_item_count}} </span>
+              <i class="fas fa-shopping-cart"></i>
+              <span class="clearfix d-none d-sm-inline-block"> Cart </span>
+            </a>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link waves-effect" href="{% url 'account_logout' %}">
+
+              <span class="clearfix d-none d-sm-inline-block"> Logout </span>
+            </a>
+          </li>
+{#              {% if request.user.restaurant %}#}
+{#                <a class="nav-link waves-effect" href="/seller/dashboard">#}
+{#                  <span class="clearfix d-none d-sm-inline-block">Seller Dashboard</span>#}
+{#                </a>#}
+{#                {% else %}#}
+{#                <a class="nav-link waves-effect" href="/add-seller">#}
+{#                  <span class="clearfix d-none d-sm-inline-block">Become Seller</span>#}
+{#                </a>#}
+{#                {% endif %}#}
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="{% url 'account_login' %}">
+
+              <span class="clearfix d-none d-sm-inline-block"> Login </span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="{% url 'account_signup' %}">
+
+              <span class="clearfix d-none d-sm-inline-block"> Signup </span>
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+
+      </div>
+
+    </div>
+    <div class="ui dropdown item" id="profileOptions">
+        <div class="ui teal buttons">
+          <div class="ui button">User</div>
+          <div class="ui floating dropdown icon button">
+            <i class="dropdown icon"></i>
+            <div class="menu">
+              <div class="item"><i class="edit icon"></i> Orders</div>
+              <div class="item"><a href="/profile"> My Profile</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </nav>
+{% block extra-scripts %}
+  <script type="text/javascript" src="{% static 'js/navbar_js.js' %}"></script>
+  <script>
+$(document).ready(function(){
+    $("#profileOptions").on("click",function(){
+    $('.ui.dropdown').dropdown('show');
+    });
+});
+</script>
+{% endblock %}

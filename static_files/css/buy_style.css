@@ -1,0 +1,31 @@
+.menus{
+	height:100%;
+	background-color:white;
+}
+.menus-item{
+	height:auto;
+	width:100%;
+	margin-top:5px;
+	padding:3px;
+	border:1px solid grey;
+}
+.add-cart{
+	font-size:14px;
+	color:white;
+	border-radius:5px;
+	margin-right:1px;
+	background-color:green;
+	border:1px solid black;
+}
+.very.relaxed.grid
+{
+	 padding-left: 5%;
+}
+.searchbar
+{
+	width:80%;
+}
+.filtermenu
+{
+	padding:1% 0% 0% 9% !important;
+}

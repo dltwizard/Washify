@@ -1,0 +1,106 @@
+{% extends "user_base.html" %}
+{% block extrahead %}
+<style>
+.ui.cards{
+	margin:0 !important;
+}
+</style>
+{% endblock %}
+{% block content %}
+<body style="background-color:#f7f2e9">
+  {% include "search.html"%}
+<div class="ui vertically divided grid" id="filterbar">
+<div class="two column row">
+	<div class="four wide column filtermenu" >
+			<div class="ui vertical menu">
+					<a class="active teal item">
+					  Sort By Popularity
+					  <div class="ui teal left pointing label">1</div>
+					</a>
+					<a class="item">
+					  Sort By Location
+					  <div class="ui label">51</div>
+					</a>
+					<a class="item">
+					  Updates
+					  <div class="ui label">1</div>
+					</a>
+					<div class="item">
+					  <div class="ui transparent icon input">
+						<input type="text" placeholder="Search Dishes...">
+						<i class="search icon"></i>
+					  </div>
+					</div>
+  
+  <div class="item">
+    <div class="header">Cost:</div>
+    <div class="menu">
+      <a class="item">100-200</a>
+      <a class="item">200-500</a>
+      <a class="item">500+</a>
+    </div>
+  </div>
+  <div class="item">
+    <div class="header">More Filters</div>
+    <div class="menu">
+      <a class="item">Recently Added</a>
+      <a class="item">30 min or free</a>
+    </div>
+  </div>
+  <div class="item">
+    <div class="header">New Arrival</div>
+    <div class="menu">
+      <a class="item">E-mail Support</a>
+      <a class="item">FAQs</a>
+    </div>
+  </div>
+</div>
+	</div>
+<div class="twelve wide column">
+	<div class="ui link cards ">
+  {% for item in object_list %}
+		<div class="column card">
+		  <div class="image">
+			<img src="{{ item.getimage }}">
+		  </div>
+		  <div class="content">
+			<div class="header">
+        <a href = "/menu/{{ item.id }}">{{ item.name }}</a>
+      </div>
+			<div class="meta">
+			  <a>Open</a>
+			</div>
+			<div class="description">
+			  {{ item.address }}
+			</div>
+		  </div>
+		  <div class="extra content">
+			<span class="right floated">
+			  0.5 mi
+			</span>
+			<span>
+			  <i class="map icon"></i>
+			</span>
+		  </div>
+		</div>
+  {% endfor %}
+      </div>
+			</div>
+	  </div>
+	  </div>
+	</div>
+  
+</body>
+<script>
+$(document).ready(function(){
+  $('.ui.sticky')
+    .sticky({
+      context: '#filterbar'
+    });
+    $("#profileOptions").on("click",function(){
+    $('.ui.dropdown').dropdown('show');
+    });
+});
+</script>
+</html>
+{% endblock %}

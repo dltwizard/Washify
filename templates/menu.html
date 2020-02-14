@@ -1,0 +1,210 @@
+{% extends "user_base.html" %}
+<head>
+	<style type="text/css">
+		.mb-20
+		{
+			margin-bottom: 20px;
+		}
+    .back
+{
+  background-color: #3fa7b399;
+
+}
+	</style>
+{% block content %}
+<div class="ui grid segment" style="background:#3fa7b399;">
+        <div class="three column row">
+            <div class="column" style="padding-left:5%;">
+                    <img class="ui medium rounded image" src="{{ seller.getimage }}">
+            </div>
+            <div class="column">
+                    <h1 class="ui header">
+                    {{ seller.name 	}}
+                    </h1>
+                    <div class="sub header">
+                      <a class="ui red tag label">{{ seller.name }}</a>
+                      <a class="ui teal tag label">Quick Delivery</a>
+                    </div>
+                    <h4 class="ui header">
+                      {{ seller.address }}
+                    </h4>
+                    <div class="sub header">
+                      <div class="ui grid">
+                      <div class="three column row">
+                        <div class="column">
+                        <h5 class="ui header">
+                          <i class="star icon"></i>3.5
+                        </h5>
+                        <div class="sub header">100+ Ratings</div>  
+                        </div>
+                        <div class="column">
+                          <h5 class="ui header">
+                          <i class="clock icon"></i>36 min
+                        </h5>
+                        <div class="sub header">Delivery Time</div>  
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="sticky sub header">
+                      <div class="ui grid">
+                        <div class="two column row">
+                <div class="left aligned left floated column">
+            
+            </div>
+          </div>
+                        <div class="left aligned left floated column">
+                <div class="ui category search">
+              <div class="ui icon input">
+                <input class="prompt" type="text" placeholder="Search Services..">
+                <i class="search icon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+            </div>
+          </div>
+          </div>
+        </div>
+  </div>
+  <div class="ui four column doubling stackable grid container">
+   <div class="ui three column row link cards">
+  {% for item in services %}
+   
+  <div class="card">
+    <div class="image">
+      <img src="{{ item.getimage }}">
+    </div>
+    <div class="content">
+      <div class="header">Matt Giampietro</div>
+      <div class="meta">
+        <a>{{ item.name }}</a>
+      </div>
+      <div class="description">
+	  	{{ item.short_description }}
+      </div>
+
+    </div>
+    <div class="extra content">
+      <span class="right floated">
+
+                {{ order_item.quantity }}
+
+	  <a href="{{ item.get_add_to_cart_url }}">
+        <button class="ui positive basic button">Add</button>
+		</a>
+      </span>
+      <span>
+        <i class="rupee sign icon"></i>
+        {{ item.price }}
+      </span>
+    </div>
+  </div>
+  {% endfor %}
+  </div>
+</div>
+  </div>
+  <div class="ui comments">
+  <h3 class="ui dividing header">Comments</h3>
+  <div class="comment">
+    <a class="avatar">
+      <img src="/images/avatar/small/matt.jpg">
+    </a>
+    <div class="content">
+      <a class="author">Matt</a>
+      <div class="metadata">
+        <span class="date">Today at 5:42PM</span>
+      </div>
+      <div class="text">
+        How artistic!
+      </div>
+      <div class="actions">
+        <a class="reply">Reply</a>
+      </div>
+    </div>
+  </div>
+  <div class="comment">
+    <a class="avatar">
+      <img src="/images/avatar/small/elliot.jpg">
+    </a>
+    <div class="content">
+      <a class="author">Elliot Fu</a>
+      <div class="metadata">
+        <span class="date">Yesterday at 12:30AM</span>
+      </div>
+      <div class="text">
+        <p>This has been very useful for my research. Thanks as well!</p>
+      </div>
+      <div class="actions">
+        <a class="reply">Reply</a>
+      </div>
+    </div>
+    <div class="comments">
+      <div class="comment">
+        <a class="avatar">
+          <img src="/images/avatar/small/jenny.jpg">
+        </a>
+        <div class="content">
+          <a class="author">Jenny Hess</a>
+          <div class="metadata">
+            <span class="date">Just now</span>
+          </div>
+          <div class="text">
+            Elliot you are always so right :)
+          </div>
+          <div class="actions">
+            <a class="reply">Reply</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="comment">
+    <a class="avatar">
+      <img src="/images/avatar/small/joe.jpg">
+    </a>
+    <div class="content">
+      <a class="author">Joe Henderson</a>
+      <div class="metadata">
+        <span class="date">5 days ago</span>
+      </div>
+      <div class="text">
+        Dude, this is awesome. Thanks so much
+      </div>
+      <div class="actions">
+        <a class="reply">Reply</a>
+      </div>
+    </div>
+  </div>
+  <form class="ui reply form">
+    <div class="field">
+      <textarea></textarea>
+    </div>
+    <div class="ui blue labeled submit icon button">
+      <i class="icon edit"></i> Add Reply
+    </div>
+  </form>
+</div>
+</body>
+<script>
+$(document).ready(function(){
+$("#profileOptions").on("click",function(){
+$('.ui.dropdown').dropdown('show');
+});
+$("#editProfile").on("click",function(){
+$('.ui.modal')
+.modal('show');
+});
+$('.ui.checkbox')
+  .checkbox();
+});
+</script>
+<style type="text/css">
+  .header
+  {
+    color:#fff !important;
+  }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+</html>
+{% endblock%}
